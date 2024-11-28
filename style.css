@@ -16,7 +16,7 @@ body {
     padding: 40px;
     background-color: rgb(8, 8, 69);
     margin: auto;
-    margin-top: 5%;
+    margin-top: 70px;
 }
 
 .display {
@@ -37,6 +37,7 @@ body {
 
 .displayInput {
     padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 .buttons {
