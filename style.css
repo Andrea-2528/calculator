@@ -23,7 +23,7 @@ body {
     background-color: rgb(9, 9, 156) ;
     height: 146px;
     text-align: right;
-    font-size: 70px;
+    font-size: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

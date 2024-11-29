@@ -15,7 +15,8 @@ function divide (a, b) {
 };
 
 function operate (a, b, op) {
-    flag = true;
+    isResultDisplayed = true;
+    isOperationInProgress = false;
     let result;
     b = parseFloat(displayInput.textContent);  //Updates secondNumber
     // displayLog.textContent= displayLog.textContent.concat(displayInput.textContent) + "=";
@@ -34,7 +35,7 @@ function operate (a, b, op) {
             }else{
                 return displayInput.textContent = result;
             }
-        case "X":
+        case "x":
             result = Math.round((multiply(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
                 return displayInput.textContent = result.toExponential(4);
@@ -49,26 +50,41 @@ function operate (a, b, op) {
                 return displayInput.textContent = result;
             }
     }
+    firstNumber=0;
+    secondNumber=0;
 };
 
 function populate(str) {
-    if(flag==false){
-        if(displayInput.textContent.length<8){
-            displayInput.textContent = displayInput.textContent.concat(str);
-        }
+
+    if(isResultDisplayed==false){
+        if(isOperationInProgress==false){
+            if(displayInput.textContent.length<8){displayInput.textContent = displayInput.textContent.concat(str)};            
+        }else {
+            displayInput.textContent=str;
+            isOperationInProgress=false;
+        };
     }else {
-        displayLog.textContent = displayInput.textContent; // + ";"
-        displayInput.textContent=str;
-        flag=false;
-    }
-};
+            displayLog.textContent = displayInput.textContent; // + ";"
+            displayInput.textContent=str;
+            isResultDisplayed=false;
+        }
+
+    };
 
 function beginOperation(str){
+
+    if(firstNumber!==0){
+        secondNumber = parseFloat(displayInput.textContent);
+        operate(firstNumber, secondNumber, operator);
+    }
+
     operator = str;
-    flag = false;
     firstNumber = parseFloat(displayInput.textContent);
+    isResultDisplayed = false;
     // displayLog.textContent = displayLog.textContent + displayInput.textContent.concat(str);
-    displayInput.textContent="";
+    // displayInput.textContent="";
+    displayInput.textContent += ` ${str}`;
+    isOperationInProgress=true;
 };
 
 function clear() {
@@ -77,14 +93,15 @@ function clear() {
     operator="";
     firstNumber=0;
     secondNumber=0;
-    flag=false;
+    isResultDisplayed=false;
+    isOperationInProgress=false;
 };
 
-let firstNumber;
-let secondNumber;
-let operator;     // Should accept +, -, *, /
-let flag = false;
-
+let firstNumber=0;
+let secondNumber=0;
+let operator="";     // Should accept +, -, *, /
+let isResultDisplayed = false;
+let isOperationInProgress = false;
 let displayInput = document.querySelector(".displayInput");
 let displayLog = document.querySelector(".displayLog");
 
