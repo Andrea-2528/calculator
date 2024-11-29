@@ -1,18 +1,18 @@
 function add (a, b) {
     return a+b;
-};
+}
 
 function subtract (a, b) {
     return a-b;
-};
+}
 
 function multiply (a, b) {
     return a*b;
-};
+}
 
 function divide (a, b) {
     return a/b;
-};
+}
 
 function operate (a, b, op) {
     isResultDisplayed = true;
@@ -26,47 +26,63 @@ function operate (a, b, op) {
             if(result>=100000000||result<=-100000000){
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result.toExponential(4);
+                displayInput.textContent = result.toExponential(4);
+                break;
             }else{
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result;
+                displayInput.textContent = result;
+                break;
             }
         case "-":
             result = Math.round((subtract(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result.toExponential(4);
+                displayInput.textContent = result.toExponential(4);
+                break;
             }else{
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result;
+                displayInput.textContent = result;
+                break;
             }
         case "x":
             result = Math.round((multiply(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result.toExponential(4);
+                displayInput.textContent = result.toExponential(4);
+                break;
             }else{
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result;
+                displayInput.textContent = result;
+                break;
             }
         case "/":
-            result = Math.round((divide(a, b) * 100) * (1 + Number.EPSILON)) / 100;
-            if(result>=100000000||result<=-100000000){
+            if(b!==0){
+                result = Math.round((divide(a, b) * 100) * (1 + Number.EPSILON)) / 100;
+                if(result>=100000000||result<=-100000000){
+                    firstNumber=0;
+                    secondNumber=0;
+                    displayInput.textContent = result.toExponential(4);
+                    break;
+                }else{
+                    firstNumber=0;
+                    secondNumber=0;
+                    displayInput.textContent = result;
+                    break;
+                }
+            }else {
                 firstNumber=0;
                 secondNumber=0;
-                return displayInput.textContent = result.toExponential(4);
-            }else{
-                firstNumber=0;
-                secondNumber=0;
-                return displayInput.textContent = result;
+                displayInput.textContent = "ERROR"
+                displayLog.textContent ="Cannot divide by 0. Press AC."
+                break;
             }
     }
-};
+}
 
 function populate(str) {
 
@@ -83,7 +99,7 @@ function populate(str) {
             isResultDisplayed=false;
         }
 
-    };
+}
 
 function beginOperation(str){
 
@@ -99,7 +115,7 @@ function beginOperation(str){
     // displayInput.textContent="";
     displayInput.textContent += ` ${str}`;
     isOperationInProgress=true;
-};
+}
 
 function clear() {
     displayLog.textContent="";
@@ -109,7 +125,7 @@ function clear() {
     secondNumber=0;
     isResultDisplayed=false;
     isOperationInProgress=false;
-};
+}
 
 function remove() {
     let str = displayInput.textContent;
@@ -127,7 +143,7 @@ function remove() {
             displayInput.textContent = newStr;            
         }
     }
-};
+}
 
 function changeSign(){
     let str = displayInput.textContent;
