@@ -24,34 +24,48 @@ function operate (a, b, op) {
         case "+":
             result = Math.round((add(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result.toExponential(4);
             }else{
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result;
             }
         case "-":
             result = Math.round((subtract(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result.toExponential(4);
             }else{
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result;
             }
         case "x":
             result = Math.round((multiply(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result.toExponential(4);
             }else{
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result;
             }
         case "/":
             result = Math.round((divide(a, b) * 100) * (1 + Number.EPSILON)) / 100;
             if(result>=100000000||result<=-100000000){
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result.toExponential(4);
             }else{
+                firstNumber=0;
+                secondNumber=0;
                 return displayInput.textContent = result;
             }
     }
-    firstNumber=0;
-    secondNumber=0;
 };
 
 function populate(str) {
@@ -97,6 +111,28 @@ function clear() {
     isOperationInProgress=false;
 };
 
+function remove() {
+    let str = displayInput.textContent;
+    let lastChar = str.charAt(str.length-1);
+    let newStr;
+    if(!str.includes("e")){
+        if(["+", "-", "x", "/"].includes(lastChar)){
+            newStr = str.slice(0, -2);
+            displayInput.textContent = newStr;
+            isOperationInProgress=false
+            firstNumber = 0;
+            secondNumber = 0;
+        }else{
+            newStr = str.slice(0, -1);
+            displayInput.textContent = newStr;            
+        }
+    }
+};
+
+function changeSign(){
+    
+}
+
 let firstNumber=0;
 let secondNumber=0;
 let operator="";     // Should accept +, -, *, /
@@ -116,3 +152,9 @@ result.addEventListener("click", () => operate(firstNumber, secondNumber, operat
 
 const AC = document.querySelector(".ac");       //Selects the "AC" button
 AC.addEventListener("click", () => clear());
+
+const C = document.querySelector(".c");
+C.addEventListener("click", () => remove())
+
+const SIGN = document.querySelector(".sign");
+SIGN.addEventListener("click", () => changeSign());
