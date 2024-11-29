@@ -64,3 +64,25 @@ button {
     width: 170px;
     background-color: orange;
 }
+
+.operator {
+    background-color: rgb(243, 73, 146);
+}
+
+.result {
+    background-color: brown;
+}
+
+.digit {
+    background-color: rgb(244, 226, 153);
+}
+
+.decimal,
+.sign{
+    background-color: rgb(226, 205, 45);
+}
+
+.c{
+    background-color: aqua;
+}
+

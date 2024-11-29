@@ -17,7 +17,7 @@ function divide (a, b) {
 function operate (a, b, op) {
     flag = true;
     let result;
-    b = parseFloat(displayInput.textContent);
+    b = parseFloat(displayInput.textContent);  //Updates secondNumber
     // displayLog.textContent= displayLog.textContent.concat(displayInput.textContent) + "=";
     switch(op){
         case "+":
@@ -57,9 +57,8 @@ function populate(str) {
             displayInput.textContent = displayInput.textContent.concat(str);
         }
     }else {
-        displayLog.textContent = displayInput.textContent + ";  ";
-        displayInput.textContent="";
-        displayInput.textContent = displayInput.textContent.concat(str);
+        displayLog.textContent = displayInput.textContent; // + ";"
+        displayInput.textContent=str;
         flag=false;
     }
 };
@@ -74,6 +73,7 @@ function beginOperation(str){
 
 function clear() {
     displayLog.textContent="";
+    displayInput.textContent="";
     operator="";
     firstNumber=0;
     secondNumber=0;
