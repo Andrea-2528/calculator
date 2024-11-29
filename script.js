@@ -130,7 +130,23 @@ function remove() {
 };
 
 function changeSign(){
-    
+    let str = displayInput.textContent;
+    switch(true){
+        case str=="":
+            displayInput.textContent="-";
+            break;
+        case str.charAt(0)=="-":
+            if(str.length==1){
+                displayInput.textContent="";
+                break;
+            }else{
+                displayInput.textContent = str.slice(1);
+                break;
+            }
+        default:
+            displayInput.textContent = "-" + str;
+            break;
+    }
 }
 
 let firstNumber=0;
