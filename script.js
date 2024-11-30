@@ -28,15 +28,12 @@ function operate (a, b, op) {
     switch(op){
         case "+":
             result = add(a,b);
-            if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
+            if(result>=100000000||result<=-100000000||((result>=-0.01&&result<=0.01)&&result!==0)){
                 // firstNumber=undefined;
                 // secondNumber=undefined;
                 displayInput.textContent = result.toExponential(4);
                 isResultDisplayed = true;
                 break;
-            }else if(result>=-0.01&&result<=0.01){
-
-
             }else{
                 // firstNumber=undefined;
                 // secondNumber=undefined;
@@ -110,8 +107,11 @@ function populate(str) {
             isOperationInProgress=false;
         };
     }else {
-            displayLog.textContent = displayInput.textContent; // + ";"
+            displayLog.textContent = displayInput.textContent + ";";
             displayInput.textContent=str;
+            firstNumber=undefined;
+            secondNumber=undefined;
+            result=undefined;
             isResultDisplayed=false;
         }
 
@@ -122,6 +122,7 @@ function beginOperation(str){
     if(firstNumber!==undefined){
         // secondNumber = parseFloat(displayInput.textContent);
         operate(firstNumber, secondNumber, operator);
+        secondNumber=undefined;
         firstNumber = result;
         result = undefined;
     }else {
