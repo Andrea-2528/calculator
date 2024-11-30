@@ -101,7 +101,7 @@ function populate(str) {
 
     if(isResultDisplayed==false){
         if(isOperationInProgress==false){
-            if(displayInput.textContent.length<8){displayInput.textContent = displayInput.textContent.concat(str)};            
+            if(displayInput.textContent.length<9){displayInput.textContent = displayInput.textContent.concat(str)};            
         }else {
             displayInput.textContent=str;
             isOperationInProgress=false;
@@ -187,6 +187,13 @@ function changeSign(){
     }
 }
 
+function decimal(){
+    let str = displayInput.textContent;
+    if(!str.includes(".")){
+        populate(".");
+    }    
+}
+
 let firstNumber=undefined;
 let secondNumber=undefined;
 let result = undefined;
@@ -197,7 +204,7 @@ let displayInput = document.querySelector(".displayInput");
 let displayLog = document.querySelector(".displayLog");
 
 const digits = document.querySelectorAll(".digit");  //Selects all digits in div.digits and "."
-digits.forEach((digit) => {digit.addEventListener("click", () => populate(digit.textContent))})
+digits.forEach((digit) => {digit.addEventListener("click", () => populate(digit.textContent))});
 
 const operators = document.querySelectorAll(".operator");  //Selects all operators
 operators.forEach((symbol) => {symbol.addEventListener("click", () => beginOperation(symbol.textContent))});
@@ -209,7 +216,10 @@ const AC = document.querySelector(".ac");       //Selects the "AC" button
 AC.addEventListener("click", () => clear());
 
 const C = document.querySelector(".c");
-C.addEventListener("click", () => remove())
+C.addEventListener("click", () => remove());
 
 const SIGN = document.querySelector(".sign");
 SIGN.addEventListener("click", () => changeSign());
+
+const DECIMAL = document.querySelector(".decimal");
+DECIMAL.addEventListener("click", () => decimal());
