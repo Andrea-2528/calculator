@@ -34,3 +34,5 @@ To be added:
     In all cases, it should either do something logical or don't do anything at all.
 - If possible, an input starting with "." should be treated as having a "0" as its first number
 - More mathematical functions, like power, square root, factorial and so on.
+- Keyboard support, allowing only necessary characters to be recognized.
+    - If necessary, add a legend on the page for the keyboard support, listing what key corresponds to what button.
