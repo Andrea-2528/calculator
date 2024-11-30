@@ -1,82 +1,98 @@
 function add (a, b) {
-    return a+b;
+    return (parseFloat(a)+parseFloat(b));
 }
 
 function subtract (a, b) {
-    return a-b;
+    return parseFloat(a-b);
 }
 
 function multiply (a, b) {
-    return a*b;
+    return parseFloat(a*b);
 }
 
 function divide (a, b) {
-    return a/b;
+    return parseFloat(a/b);
 }
 
 function operate (a, b, op) {
-    isResultDisplayed = true;
+    if(a==undefined && b==undefined){return};
+
     isOperationInProgress = false;
-    let result;
-    b = parseFloat(displayInput.textContent);  //Updates secondNumber
+
+    if (b==undefined){
+        b = displayInput.textContent;
+        secondNumber = b;
+    }
+
     // displayLog.textContent= displayLog.textContent.concat(displayInput.textContent) + "=";
     switch(op){
         case "+":
-            result = Math.round((add(a, b) * 100) * (1 + Number.EPSILON)) / 100;
-            if(result>=100000000||result<=-100000000){
-                firstNumber=0;
-                secondNumber=0;
+            result = add(a,b);
+            if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
+                // firstNumber=undefined;
+                // secondNumber=undefined;
                 displayInput.textContent = result.toExponential(4);
+                isResultDisplayed = true;
                 break;
+            }else if(result>=-0.01&&result<=0.01){
+
+
             }else{
-                firstNumber=0;
-                secondNumber=0;
-                displayInput.textContent = result;
+                // firstNumber=undefined;
+                // secondNumber=undefined;
+                displayInput.textContent = result.toFixed(2);
+                isResultDisplayed = true;
                 break;
             }
         case "-":
-            result = Math.round((subtract(a, b) * 100) * (1 + Number.EPSILON)) / 100;
-            if(result>=100000000||result<=-100000000){
-                firstNumber=0;
-                secondNumber=0;
+            result = subtract(a,b);
+            if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
+                // firstNumber=undefined;
+                // secondNumber=undefined;
                 displayInput.textContent = result.toExponential(4);
+                isResultDisplayed = true;
                 break;
             }else{
-                firstNumber=0;
-                secondNumber=0;
-                displayInput.textContent = result;
+                // firstNumber=undefined;
+                // secondNumber=undefined;
+                displayInput.textContent = result.toFixed(2);
+                isResultDisplayed = true;
                 break;
             }
         case "x":
-            result = Math.round((multiply(a, b) * 100) * (1 + Number.EPSILON)) / 100;
-            if(result>=100000000||result<=-100000000){
-                firstNumber=0;
-                secondNumber=0;
+            result = multiply(a,b);
+            if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
+                // firstNumber=undefined;
+                // secondNumber=undefined;
                 displayInput.textContent = result.toExponential(4);
+                isResultDisplayed = true;
                 break;
             }else{
-                firstNumber=0;
-                secondNumber=0;
-                displayInput.textContent = result;
+                // firstNumber=undefined;
+                // secondNumber=undefined;
+                displayInput.textContent = result.toFixed(2);
+                isResultDisplayed = true;
                 break;
             }
         case "/":
             if(b!==0){
-                result = Math.round((divide(a, b) * 100) * (1 + Number.EPSILON)) / 100;
-                if(result>=100000000||result<=-100000000){
-                    firstNumber=0;
-                    secondNumber=0;
+                result = divide(a,b);
+                if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
+                    // firstNumber=undefined;
+                    // secondNumber=undefined;
                     displayInput.textContent = result.toExponential(4);
+                    isResultDisplayed = true;
                     break;
                 }else{
-                    firstNumber=0;
-                    secondNumber=0;
-                    displayInput.textContent = result;
+                    // firstNumber=undefined;
+                    // secondNumber=undefined;
+                    displayInput.textContent = result.toFixed(2);
+                    isResultDisplayed = true;
                     break;
                 }
             }else {
-                firstNumber=0;
-                secondNumber=0;
+                // firstNumber=undefined;
+                // secondNumber=undefined;
                 displayInput.textContent = "ERROR"
                 displayLog.textContent ="Cannot divide by 0. Press AC."
                 break;
@@ -103,13 +119,17 @@ function populate(str) {
 
 function beginOperation(str){
 
-    if(firstNumber!==0){
-        secondNumber = parseFloat(displayInput.textContent);
+    if(firstNumber!==undefined){
+        // secondNumber = parseFloat(displayInput.textContent);
         operate(firstNumber, secondNumber, operator);
+        firstNumber = result;
+        result = undefined;
+    }else {
+        firstNumber = parseFloat(displayInput.textContent);
+
     }
 
     operator = str;
-    firstNumber = parseFloat(displayInput.textContent);
     isResultDisplayed = false;
     // displayLog.textContent = displayLog.textContent + displayInput.textContent.concat(str);
     // displayInput.textContent="";
@@ -121,8 +141,9 @@ function clear() {
     displayLog.textContent="";
     displayInput.textContent="";
     operator="";
-    firstNumber=0;
-    secondNumber=0;
+    result=undefined;
+    firstNumber=undefined;
+    secondNumber=undefined;
     isResultDisplayed=false;
     isOperationInProgress=false;
 }
@@ -136,8 +157,8 @@ function remove() {
             newStr = str.slice(0, -2);
             displayInput.textContent = newStr;
             isOperationInProgress=false
-            firstNumber = 0;
-            secondNumber = 0;
+            firstNumber = undefined;
+            secondNumber = undefined;
         }else{
             newStr = str.slice(0, -1);
             displayInput.textContent = newStr;            
@@ -165,8 +186,9 @@ function changeSign(){
     }
 }
 
-let firstNumber=0;
-let secondNumber=0;
+let firstNumber=undefined;
+let secondNumber=undefined;
+let result = undefined;
 let operator="";     // Should accept +, -, *, /
 let isResultDisplayed = false;
 let isOperationInProgress = false;
@@ -179,8 +201,8 @@ digits.forEach((digit) => {digit.addEventListener("click", () => populate(digit.
 const operators = document.querySelectorAll(".operator");  //Selects all operators
 operators.forEach((symbol) => {symbol.addEventListener("click", () => beginOperation(symbol.textContent))});
 
-const result = document.querySelector(".result");  //Selects the "=" button
-result.addEventListener("click", () => operate(firstNumber, secondNumber, operator));
+const equal = document.querySelector(".result");  //Selects the "=" button
+equal.addEventListener("click", () => operate(firstNumber, secondNumber, operator));
 
 const AC = document.querySelector(".ac");       //Selects the "AC" button
 AC.addEventListener("click", () => clear());
