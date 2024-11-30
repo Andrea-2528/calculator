@@ -3,15 +3,15 @@ function add (a, b) {
 }
 
 function subtract (a, b) {
-    return parseFloat(a-b);
+    return (parseFloat(a)-parseFloat(b));
 }
 
 function multiply (a, b) {
-    return parseFloat(a*b);
+    return (parseFloat(a)*parseFloat(b));
 }
 
 function divide (a, b) {
-    return parseFloat(a/b);
+    return (parseFloat(a)/parseFloat(b));
 }
 
 function operate (a, b, op) {
