@@ -4,6 +4,8 @@ Features:
 
 - 4 main operations (addition, subtraction, multiplication and division).
 - Result is always saved with max possible precision but displayed with an approximation on the second decimal.
+    - Note: the result is shown with its decimal part only if that is != 0, 
+        otherwise is just shown as a whole number (12.42974... is displayed as 12.43, but 12.0000... is displayed as 12).
 - For numbers too big or too small to fit in the screen, scientific notation is used (although it can't be input by the user).
 - Sign can be changed before, after, and while typing the number.
 - Accepts decimal inputs.
