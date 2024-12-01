@@ -7,6 +7,7 @@ Features:
     - Note: the result is shown with its decimal part only if that is != 0, 
         otherwise is just shown as a whole number (12.42974... is displayed as 12.43, but 12.0000... is displayed as 12).
 - For numbers too big or too small to fit in the screen, scientific notation is used (although it can't be input by the user).
+    - Note: For small numbers, scientific notation is displayed if said number is less or equal to 0.1, to avoid loosing precision on the displayed result.
 - Sign can be changed before, after, and while typing the number.
 - Accepts decimal inputs.
     - Also prevents the input of multiple decimals.
@@ -35,8 +36,18 @@ To be added:
     Full check of possible extreme cases to be done.
     In all cases, it should either do something logical or don't do anything at all.
 - If possible, an input starting with "." should be treated as having a "0" as its first number.
-    - By similar logic, an input containing only "." may be treated as the smallest quantity in the machine. (Which couldn't otherwise be input).
+    - By similar logic, an input containing only "." may be treated as the smallest quantity in the machine. (Which couldn't otherwise be input due to limits in the display).
 - More mathematical functions, like power, square root, factorial and so on.
 - Keyboard support, allowing only necessary characters to be recognized.
     - Add a legend on the page for the keyboard support, listing what key corresponds to what button.
+
+NOTES:
+
+- The limitations used are intended to make the calculator harder to program:
+    - It would be easier to give the user a wider syntax that allows to input whole expressions instead of two numbers and an operator, and then evaluate (eval) the entire 
+    expression with the given correct syntax.
+    - That being said, even if that simplifies the logic, it would also allow for much more complex mathematical operations that would need their own handling of special cases (like the /0 in a division),
+    and their own checks of syntax, thus making it simpler in the logic of operations but not in the handling of errors.
+    - It follows that a scientific calculator would be an interesting future project to compare the differences, also considering that a complex scientific calculator allows for much more than evaluating 
+    determined and explicit expressions, it would surely become a longer project.
 

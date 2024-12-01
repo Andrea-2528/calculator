@@ -15,8 +15,7 @@ function divide (a, b) {
 }
 
 function printResult(result){
-    let str = toString(result);
-    if(result>=100000000||result<=-100000000||((result>=-0.01&&result<=0.01)&&result!==0)){
+    if(Math.abs(result)>=999999||Math.abs(result)<=0.1){
         displayInput.textContent = result.toExponential(4);
     }else{
         displayInput.textContent = result;
@@ -29,7 +28,7 @@ function printResult(result){
 }
 
 function checkResult(str){
-    if(str.includes(".")){
+    if(str.includes(".")&&(!str.includes("e"))){
         displayInput.textContent = parseFloat(str).toFixed(2);
     }
 }
@@ -64,7 +63,7 @@ function operate (a, b, op) {
                 break;
             }else {
                 displayInput.textContent = "ERROR"
-                displayLog.textContent ="Cannot divide by 0. Press AC."
+                displayLog.textContent ="Me dumb dumb divided by 0. Press AC."
                 break;
             }
     }
