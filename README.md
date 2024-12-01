@@ -11,7 +11,7 @@ Features:
 - Accepts decimal inputs.
     - Also prevents the input of multiple decimals.
 - Allows any digit or operator symbol to be deleted.
-- Can operate between two numbers and, when "=" is pressed show the result:
+- Can operate between two numbers and, when "=" is pressed, show the result:
     - Those two numbers can be input both by the user or equal to the previous result.
     - After the result is shown, the next digit pressed logs the previous result on top of screen.
 - It therefore can operate in series, both on the same expression or on a result:
