@@ -14,6 +14,26 @@ function divide (a, b) {
     return (parseFloat(a)/parseFloat(b));
 }
 
+function printResult(result){
+    let str = toString(result);
+    if(result>=100000000||result<=-100000000||((result>=-0.01&&result<=0.01)&&result!==0)){
+        displayInput.textContent = result.toExponential(4);
+    }else{
+        displayInput.textContent = result;
+    }
+
+    checkResult(displayInput.textContent);
+
+    isResultDisplayed=true;
+
+}
+
+function checkResult(str){
+    if(str.includes(".")){
+        displayInput.textContent = parseFloat(str).toFixed(2);
+    }
+}
+
 function operate (a, b, op) {
     if(a==undefined && b==undefined){return};
 
@@ -24,72 +44,25 @@ function operate (a, b, op) {
         secondNumber = b;
     }
 
-    // displayLog.textContent= displayLog.textContent.concat(displayInput.textContent) + "=";
     switch(op){
         case "+":
             result = add(a,b);
-            if(result>=100000000||result<=-100000000||((result>=-0.01&&result<=0.01)&&result!==0)){
-                // firstNumber=undefined;
-                // secondNumber=undefined;
-                displayInput.textContent = result.toExponential(4);
-                isResultDisplayed = true;
-                break;
-            }else{
-                // firstNumber=undefined;
-                // secondNumber=undefined;
-                displayInput.textContent = result.toFixed(2);
-                isResultDisplayed = true;
-                break;
-            }
+            printResult(result);
+            break;
         case "-":
             result = subtract(a,b);
-            if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
-                // firstNumber=undefined;
-                // secondNumber=undefined;
-                displayInput.textContent = result.toExponential(4);
-                isResultDisplayed = true;
-                break;
-            }else{
-                // firstNumber=undefined;
-                // secondNumber=undefined;
-                displayInput.textContent = result.toFixed(2);
-                isResultDisplayed = true;
-                break;
-            }
+            printResult(result);
+            break;
         case "x":
             result = multiply(a,b);
-            if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
-                // firstNumber=undefined;
-                // secondNumber=undefined;
-                displayInput.textContent = result.toExponential(4);
-                isResultDisplayed = true;
-                break;
-            }else{
-                // firstNumber=undefined;
-                // secondNumber=undefined;
-                displayInput.textContent = result.toFixed(2);
-                isResultDisplayed = true;
-                break;
-            }
+            printResult(result);
+            break;
         case "/":
             if(b!==0){
                 result = divide(a,b);
-                if(result>=100000000||result<=-100000000||(result>=-0.01&&result<=0.01)){
-                    // firstNumber=undefined;
-                    // secondNumber=undefined;
-                    displayInput.textContent = result.toExponential(4);
-                    isResultDisplayed = true;
-                    break;
-                }else{
-                    // firstNumber=undefined;
-                    // secondNumber=undefined;
-                    displayInput.textContent = result.toFixed(2);
-                    isResultDisplayed = true;
-                    break;
-                }
+                printResult(result);
+                break;
             }else {
-                // firstNumber=undefined;
-                // secondNumber=undefined;
                 displayInput.textContent = "ERROR"
                 displayLog.textContent ="Cannot divide by 0. Press AC."
                 break;
@@ -120,20 +93,16 @@ function populate(str) {
 function beginOperation(str){
 
     if(firstNumber!==undefined){
-        // secondNumber = parseFloat(displayInput.textContent);
         operate(firstNumber, secondNumber, operator);
         secondNumber=undefined;
         firstNumber = result;
         result = undefined;
     }else {
         firstNumber = parseFloat(displayInput.textContent);
-
     }
 
     operator = str;
     isResultDisplayed = false;
-    // displayLog.textContent = displayLog.textContent + displayInput.textContent.concat(str);
-    // displayInput.textContent="";
     displayInput.textContent += ` ${str}`;
     isOperationInProgress=true;
 }
