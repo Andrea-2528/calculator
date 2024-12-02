@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: rgb(0, 0, 20);
+    background-color: rgb(0, 0, 40);
 }
 
 .calculatorBody {
@@ -21,6 +21,7 @@ body {
     margin: auto;
     margin-top: 70px;
     border-radius: 20px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .display {
@@ -33,6 +34,8 @@ body {
     justify-content: space-between;
     border-radius: 20px;
     border: 6px solid #3A4C6B;
+    box-shadow: 2px 2px 2px black;
+
 }
 
 .displayLog {
@@ -60,6 +63,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    box-shadow: 2px 2px 2px black;
+
 }
 
 button {
@@ -68,7 +73,8 @@ button {
     cursor: pointer;
     border-radius: 20px;
     border: 2px solid #3A4C6B;
-    font-size: 30px;    
+    font-size: 30px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .ac {
