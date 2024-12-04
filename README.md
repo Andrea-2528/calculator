@@ -1,8 +1,10 @@
+Live preview: https://andrea-2528.github.io/calculator/
+
 Simple calculator that operates step by step, not by evaluating whole expressions.
 
 Features:
 
-- 4 main operations (addition, subtraction, multiplication and division).
+- 4 operations (addition, subtraction, multiplication and division).
 - Result is always saved with max possible precision but displayed with an approximation on the second decimal.
     - Note: the result is shown with its decimal part only if that is != 0, 
         otherwise is just shown as a whole number (12.42974... is displayed as 12.43, but 12.0000... is displayed as 12).
